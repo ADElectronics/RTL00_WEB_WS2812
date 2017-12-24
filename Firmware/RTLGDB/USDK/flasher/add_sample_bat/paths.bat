@@ -1,0 +1,1 @@
+PATH=C:\RTL\6-2017-q2\bin;C:\Data\JLink_V610m;%PATH%

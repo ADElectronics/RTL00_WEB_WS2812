@@ -1,0 +1,49 @@
+﻿  ===========================================================
+  Compile (Debug)
+  project/user_start.c
+  project/WS2812/ledfilters.c
+  project/WS2812/ledeffectsserver.c
+  project/web/web_int_callbacks.c
+  project/web/web_int_vars.c
+  ===========================================================
+  Link (Debug)
+  ===========================================================
+  Build names map file
+  Debug/obj/Debug.nmap
+  ===========================================================
+  Create image1r (Debug/bin/ram_1.r.bin)
+  b:268438472 s:268438472 e:268446992
+  size 8520
+  append fw head b000
+  copy size 8520
+  ===========================================================
+  Create image2ns (Debug/bin/ram_2.ns.bin)
+  b:268460032 s:268460032 e:268727448
+  size 267416
+  copy size 267416
+  ===========================================================
+  Create image3 (SDRAM, Debug/bin/sdram.p.bin)
+  30000000 30000000
+  b:805306368 s:805306368 e:805306368
+  size 0
+  copy size 0
+  ===========================================================
+  Make OTA image (Debug/bin/ota.bin)
+  size = 267448 
+  
+  checksum 1a71a99
+  
+  ===========================================================
+  Create image2p (Debug/bin/ram_2.p.bin)
+  b:268460032 s:268460032 e:268727448
+  size 267416
+  copy size 267416
+  ===========================================================
+  Make Flash image (Debug/bin/ram_all.bin)
+  total 44 k, padding data 0, name Debug/bin/ram_all.bin
+  Original size zd
+  Padding  size zd
+  -----------------------------------------------------------
+  Image (Debug/bin/ota.bin) size 267452 bytes
+  Image (Debug/bin/ram_all.bin) size 312504 bytes
+  ===========================================================

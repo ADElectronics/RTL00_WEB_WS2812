@@ -1,0 +1,63 @@
+.in_body
+{
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+	background-color:transparent;
+}
+.div_c
+{
+	margin-left:50px;
+	margin-right:50px;
+	margin-top:30px;
+	margin-bottom:20px;
+}
+.fw
+{
+	float:right;
+	width:30%;
+}
+.label
+{
+	float:left;
+	width:50%;
+	color:#000000;
+	margin-bottom:-2px;
+	font-size:15px;
+}
+.label1
+{
+	float:left;
+	margin-left:52px;
+	width:50%;
+	color:#000000;
+	margin-bottom:-2px;
+	font-size:15px;
+}
+.cl
+{
+	clear:left;
+}
+.line1
+{
+	height:1px;
+	background-color:#000000;
+	width:90%;
+	margin-left:52px;
+	margin-top:5px;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.btn
+{
+	width:66px;
+	height:27px;
+	border-style:none;
+	border-radius:3px 3px 3px 3px;
+	font-size:14px;
+	font-weight:bold; 
+	background-color:#6699FF;
+	color:#fff;
+	cursor:pointer;
+}

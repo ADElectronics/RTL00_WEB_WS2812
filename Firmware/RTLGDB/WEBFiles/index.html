@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="elements.css" rel="stylesheet">
+<style></style>
+</head>
+<body>
+	<p align="center">Глупая гирлянда</p>
+
+	<div class="tab" align="center">
+		<button class="tablinks" onclick="openTab(event, 0)">Фильтры</button>
+		<button class="tablinks" onclick="openTab(event, 1)">?</button>
+		<button class="tablinks" onclick="openTab(event, 2)">Настройки</button>
+	</div>
+
+	<div id="0" class="tabcontent" align="center">
+        <form method="post">
+            <fieldset>
+                <input type="checkbox" class="checkbox" id="filt0" name='ws_filt_rbw_enbl' onclick="openFilterSettings(this)" />
+                <label for="filt0">Радуга</label>
+                <input type="checkbox" class="checkbox" id="filt1" name='ws_filt_const_enbl' onclick="openFilterSettings(this)" />
+                <label for="filt1">Оттенок</label>
+                <input type="checkbox" class="checkbox" id="filt2" name='ws_filt_fd_enbl' onclick="openFilterSettings(this)" />
+                <label for="filt2">Выцветание</label>
+                <input type="checkbox" class="checkbox" id="filt3" name='ws_filt_wave_enbl' onclick="openFilterSettings(this)" />
+                <label for="filt3">Волна</label>
+            </fieldset>
+
+
+            <div id="filt0" class="filtercontent">
+                <h4 align="center">Радуга</h4>
+                Разместить полную радугу на пикселях, ед. :<br>
+                <input type="range" class="range" step="1" min="10" name='ws_filt_rbw_huesteps' max="400" onchange="sendFilterParam(this.name, this.value)"/><br>
+                Скорость смены оттенка:<br>
+                <input type="range" class="range" min="1" name='ws_filt_rbw_cyclesteps' max="10" onchange="sendFilterParam(this.name, this.value)"/><br>
+            </div>
+
+            <div id="filt1" class="filtercontent">
+                <h4 align="center">Оттенок</h4>
+                <canvas id="picker"></canvas><br>
+                <input id="color" value="#54aedb">
+            </div>
+
+            <div id="filt2" class="filtercontent">
+                <h4 align="center">Выцветание</h4>
+                Скорость смены яркости:<br>
+                <input type="range" class="range" min="1" name='ws_filt_fd_cyclesteps' max="254" onchange="sendFilterParam(this.name, this.value)"/><br>
+                Минимальная яркость:<br>
+                <input type="range" class="range" min="0" name='ws_filt_fd_min' max="254" onchange="sendFilterParam(this.name, this.value)"/><br>
+                Максимальная яркость:<br>
+                <input type="range" class="range" min="1" name='ws_filt_fd_max' max="255" onchange="sendFilterParam(this.name, this.value)"/><br>
+                Шанс срабатывания:<br>
+                <input type="range" class="range" min="1" name='ws_filt_fd_chance' onchange="sendFilterParam(this.name, this.value)"/><br>
+            </div>
+
+            <div id="filt3" class="filtercontent">
+                <h4 align="center">Волна</h4>
+            </div>
+        </form>
+	</div>
+
+	<div id="1" class="tabcontent" align="center">
+        <h3>Ничего</h3>
+
+	</div>
+
+	<div id="2" class="tabcontent">
+		<h3>Настройки</h3>
+	
+	</div>
+
+	<script src="html5kellycolorpicker.min.js"></script>
+	<script src="elements.js"></script>
+	<script type="text/javascript">
+
+	new KellyColorPicker({place : 'picker', input : 'color', size : 300});
+			
+    var cfg =
+    {
+        ws_filt_rbw_enbl: "~ws_filt_rbw_enbl~",
+		ws_filt_flick_enbl: "~ws_filt_flick_enbl~",
+		ws_filt_fd_enbl: "~ws_filt_fd_enbl~",
+		ws_filt_rbw_huesteps: "~ws_filt_rbw_huesteps~",
+        ws_filt_rbw_cyclesteps: "~ws_filt_rbw_cyclesteps~",
+        ws_filt_fd_cyclesteps: "~ws_filt_fd_cyclesteps~",
+        ws_filt_fd_min: "~ws_filt_fd_min~",
+        ws_filt_fd_max: "~ws_filt_fd_max~",
+        ws_filt_fd_chance: "~ws_filt_fd_chance~"
+    }
+    setFormValues(document.forms[0], cfg);
+
+	</script>
+</body>
+</html> 

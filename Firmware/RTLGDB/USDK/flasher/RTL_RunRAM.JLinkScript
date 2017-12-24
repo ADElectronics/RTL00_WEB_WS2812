@@ -1,0 +1,12 @@
+r0
+trst0
+r1
+trst1
+h
+r
+loadbin Debug/bin/ram_1.r.bin 0x10000bc8
+loadbin Debug/bin/ram_2.bin 0x10006000
+r
+w4 0x40000210,0x20011113
+g
+q
