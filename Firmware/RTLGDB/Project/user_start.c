@@ -77,11 +77,13 @@ extern void console_init(void);
 
 void user_ws_thrd(void)
 {
+	ledEffectsServer_Init();
+
 	while (1)
 	{
 		if (xSemaphoreTake(sema_WEBReady, 10 * configTICK_RATE_HZ))
 		{
-			ledEffectsServer_Init();
+			ledEffectsServer_Task();
 		}
 		WDGRefresh();
 	}

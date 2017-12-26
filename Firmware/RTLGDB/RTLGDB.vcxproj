@@ -81,7 +81,6 @@
     <None Include="userset.mk" />
     <None Include="WEBFiles\elements.css" />
     <None Include="WEBFiles\elements.js" />
-    <None Include="WEBFiles\html5kellycolorpicker.min.js" />
     <None Include="WEBFiles\index.html" />
     <None Include="webfs.mk" />
   </ItemGroup>

@@ -38,9 +38,6 @@
     <None Include="WEBFiles\elements.js">
       <Filter>WEBFiles</Filter>
     </None>
-    <None Include="WEBFiles\html5kellycolorpicker.min.js">
-      <Filter>WEBFiles</Filter>
-    </None>
     <None Include="WEBFiles\index.html">
       <Filter>WEBFiles</Filter>
     </None>

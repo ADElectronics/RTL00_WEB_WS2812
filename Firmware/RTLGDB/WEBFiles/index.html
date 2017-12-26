@@ -1,94 +1,256 @@
-<!DOCTYPE html>
+п»ї<!DOCTYPE html>
 <html>
 <head>
-<link href="elements.css" rel="stylesheet">
-<style></style>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Р“Р»СѓРїР°СЏ РіРёСЂР»СЏРЅРґР°</title>
+    <link href="elements.css" rel="stylesheet">
+    <style></style>
 </head>
 <body>
-	<p align="center">Глупая гирлянда</p>
 
-	<div class="tab" align="center">
-		<button class="tablinks" onclick="openTab(event, 0)">Фильтры</button>
-		<button class="tablinks" onclick="openTab(event, 1)">?</button>
-		<button class="tablinks" onclick="openTab(event, 2)">Настройки</button>
+	<div class="hblockcont"> 
+		<input type="image" src="off.gif" class='off' name='ws_isenable' onclick="changeOnOff(this)" />	
 	</div>
-
+	
+	<div class="tab" align="center">       
+        <button class="tablinks" onclick="openTab(event, 0)">Р РµР¶РёРј СЂР°Р±РѕС‚С‹</button>
+        <button class="tablinks" onclick="openTab(event, 1)">РќР°СЃС‚СЂРѕР№РєРё Wi-Fi</button>
+    </div>
 	<div id="0" class="tabcontent" align="center">
         <form method="post">
             <fieldset>
                 <input type="checkbox" class="checkbox" id="filt0" name='ws_filt_rbw_enbl' onclick="openFilterSettings(this)" />
-                <label for="filt0">Радуга</label>
+                <label for="filt0">Р Р°РґСѓРіР°</label>
                 <input type="checkbox" class="checkbox" id="filt1" name='ws_filt_const_enbl' onclick="openFilterSettings(this)" />
-                <label for="filt1">Оттенок</label>
+                <label for="filt1">РћС‚С‚РµРЅРѕРє</label>
                 <input type="checkbox" class="checkbox" id="filt2" name='ws_filt_fd_enbl' onclick="openFilterSettings(this)" />
-                <label for="filt2">Выцветание</label>
+                <label for="filt2">Р’С‹С†РІРµС‚Р°РЅРёРµ</label>
                 <input type="checkbox" class="checkbox" id="filt3" name='ws_filt_wave_enbl' onclick="openFilterSettings(this)" />
-                <label for="filt3">Волна</label>
+                <label for="filt3">Р’РѕР»РЅР°</label>
             </fieldset>
 
-
             <div id="filt0" class="filtercontent">
-                <h4 align="center">Радуга</h4>
-                Разместить полную радугу на пикселях, ед. :<br>
-                <input type="range" class="range" step="1" min="10" name='ws_filt_rbw_huesteps' max="400" onchange="sendFilterParam(this.name, this.value)"/><br>
-                Скорость смены оттенка:<br>
+                <h4 align="center">Р Р°РґСѓРіР°</h4>
+                Р Р°Р·РјРµСЃС‚РёС‚СЊ РїРѕР»РЅСѓСЋ СЂР°РґСѓРіСѓ РЅР° РїРёРєСЃРµР»СЏС…, РµРґ. :<br>
+                <input type="range" class="range" step="1" min="10" name='ws_filt_rbw_huesteps' max="~ws_striplen~" onchange="sendFilterParam(this.name, this.value)"/><br>
+                РЎРєРѕСЂРѕСЃС‚СЊ СЃРјРµРЅС‹ РѕС‚С‚РµРЅРєР°:<br>
                 <input type="range" class="range" min="1" name='ws_filt_rbw_cyclesteps' max="10" onchange="sendFilterParam(this.name, this.value)"/><br>
             </div>
 
             <div id="filt1" class="filtercontent">
-                <h4 align="center">Оттенок</h4>
+                <h4 align="center">РћС‚С‚РµРЅРѕРє</h4>
                 <canvas id="picker"></canvas><br>
-                <input id="color" value="#54aedb">
+                <input id="color" value="#007fff">
             </div>
 
             <div id="filt2" class="filtercontent">
-                <h4 align="center">Выцветание</h4>
-                Скорость смены яркости:<br>
-                <input type="range" class="range" min="1" name='ws_filt_fd_cyclesteps' max="254" onchange="sendFilterParam(this.name, this.value)"/><br>
-                Минимальная яркость:<br>
+                <h4 align="center">Р’С‹С†РІРµС‚Р°РЅРёРµ</h4>
+                РЎРєРѕСЂРѕСЃС‚СЊ СЃРјРµРЅС‹ СЏСЂРєРѕСЃС‚Рё:<br>
+                <input type="range" class="range" min="1" name='ws_filt_fd_cyclesteps' max="127" onchange="sendFilterParam(this.name, this.value)"/><br>
+                РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЏСЂРєРѕСЃС‚СЊ:<br>
                 <input type="range" class="range" min="0" name='ws_filt_fd_min' max="254" onchange="sendFilterParam(this.name, this.value)"/><br>
-                Максимальная яркость:<br>
+                РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЏСЂРєРѕСЃС‚СЊ:<br>
                 <input type="range" class="range" min="1" name='ws_filt_fd_max' max="255" onchange="sendFilterParam(this.name, this.value)"/><br>
-                Шанс срабатывания:<br>
+				<!--
+                РЁР°РЅСЃ СЃСЂР°Р±Р°С‚С‹РІР°РЅРёСЏ:<br>
                 <input type="range" class="range" min="1" name='ws_filt_fd_chance' onchange="sendFilterParam(this.name, this.value)"/><br>
+				-->
             </div>
 
             <div id="filt3" class="filtercontent">
-                <h4 align="center">Волна</h4>
+                <h4 align="center">Р’РѕР»РЅР°</h4>
+                РЎРєРѕСЂРѕСЃС‚СЊ:<br>
+                <input type="range" class="range" min="1" name='ws_filt_wave_step' max="10" onchange="sendFilterParam(this.name, this.value)" /><br>
+                Р”Р»РёРЅР° РІРѕР»РЅС‹ :<br>
+                <input type="range" class="range" step="1" min="10" max="128" name='ws_filt_wave_wavesteps' max="~ws_striplen~" onchange="sendFilterParam(this.name, this.value)"/><br>
             </div>
         </form>
 	</div>
 
 	<div id="1" class="tabcontent" align="center">
-        <h3>Ничего</h3>
+        <form method="post">
+            <table>
+                <tr>
+                    <td class="td1st">Р РµР¶РёРј Wi-Fi</td>
+                    <td>
+                        <select class="select" name='wifi_mode'>
+                            <option value='1'>РљР»РёРµРЅС‚</option>
+                            <option value='2'>РўРѕС‡РєР° РґРѕСЃС‚СѓРїР°</option>
+                            <option value='3'>РљР»РёРµРЅС‚ + РўРѕС‡РєР° РґРѕСЃС‚СѓРїР°</option>
+				        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">IEEE PHY</td>
+                    <td>
+                        <select class="select" name='wifi_bgn'>
+                            <option value='1'>802.11b</option>
+                            <option value='3'>802.11g</option>
+                            <option value='11'>802.11n</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">РњРѕС‰РЅРѕСЃС‚СЊ РїРµСЂРµРґР°С‡Рё</td>
+                    <td>
+                        <select class="select" name='wifi_txpow'>
+                            <option value='0'>100%</option>
+                            <option value='1'>75%</option>
+                            <option value='2'>50%</option>
+                            <option value='3'>25%</option>
+                            <option value='4'>12.5%</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="td1st"><b>РќР°СЃС‚СЂРѕР№РєРё РєР»РёРµРЅС‚Р°:</b></td>
+                </tr>
+                <tr>
+                    <td class="td1st">SSID</td>
+                    <td>
+                        <input name="wifi_st_ssid" class="inputtext" maxlength='31' value='~wifi_st_ssid~'/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">РџР°СЂРѕР»СЊ</td>
+                    <td>
+                        <input name="wifi_st_psw" class="inputtext" maxlength='63' value='~wifi_st_psw~' />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">РђСѓС‚РµРЅС‚РёС„РёРєР°С†РёСЏ</td>
+                    <td>
+                        <select class="select" name='wifi_st_auth'>
+                            <option value='0'>Open</option>
+                            <option value='1'>WEP PSK</option>
+                            <option value='2'>WEP Shared</option>
+                            <option value='3'>WPA TKIP</option>
+                            <option value='4'>WPA AES</option>
+                            <option value='5'>WPA2 TKIP</option>
+                            <option value='6'>WPA2 AES</option>
+                            <option value='7'>WPA2 Mixed</option>
+                            <option value='8'>WPA2/WPA AES</option>
+                            <option value='9'>Unknown</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">IP</td>
+                    <td>
+                        <input name="wifi_st_ip" class="inputtext" maxlength='31' value='~wifi_st_ip~' />
+                    </td>
+                </tr>
 
+                <tr>
+                    <td class="td1st"><b>РќР°СЃС‚СЂРѕР№РєРё С‚РѕС‡РєРё РґРѕСЃС‚СѓРїР°:</b></td>
+                </tr>
+                <tr>
+                    <td class="td1st">SSID</td>
+                    <td>
+                        <input name="wifi_ap_ssid" class="inputtext" maxlength='31' value='~wifi_ap_ssid~' />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">РџР°СЂРѕР»СЊ</td>
+                    <td>
+                        <input name="wifi_ap_psw" class="inputtext" maxlength='63' value='~wifi_ap_psw~' />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">РђСѓС‚РµРЅС‚РёС„РёРєР°С†РёСЏ</td>
+                    <td>
+                        <select class="select" name='wifi_ap_auth'>
+                            <option value='0'>Open</option>
+                            <option value='1'>WPA_WPA2_PSK</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1st">IP</td>
+                    <td>
+                        <input name="wifi_ap_ip" class="inputtext" maxlength='31' value='~wifi_ap_ip~' />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type='hidden' name='wifi_newcfg' value='0xffff' />
+                        <button class="button">РџСЂРёРјРµРЅРёС‚СЊ...</button>
+                    </td>
+                </tr>
+            </table>     
+        </form>
 	</div>
 
-	<div id="2" class="tabcontent">
-		<h3>Настройки</h3>
-	
-	</div>
-
-	<script src="html5kellycolorpicker.min.js"></script>
+	<script src="colorpicker.min.js"></script>
 	<script src="elements.js"></script>
 	<script type="text/javascript">
+	    /* https://github.com/NC22/HTML5-Color-Picker/wiki/Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ */
+	    var colorPickerT = new KellyColorPicker(
+        {
+            place: 'picker',
+            input: 'color',
+            size: 300,
+        });
+		
+	    var onchange = function (self)
+	    {
+	        var hsv = colorPickerT.getCurColorHsv();
+	        sendHSV(hsv);
+	    };
+	    //colorPickerT.addUserEvent("change", onchange);
+	    colorPickerT.addUserEvent("mouseuph", onchange);
+	    colorPickerT.addUserEvent("mouseupsv", onchange);
 
-	new KellyColorPicker({place : 'picker', input : 'color', size : 300});
-			
-    var cfg =
-    {
-        ws_filt_rbw_enbl: "~ws_filt_rbw_enbl~",
-		ws_filt_flick_enbl: "~ws_filt_flick_enbl~",
-		ws_filt_fd_enbl: "~ws_filt_fd_enbl~",
-		ws_filt_rbw_huesteps: "~ws_filt_rbw_huesteps~",
-        ws_filt_rbw_cyclesteps: "~ws_filt_rbw_cyclesteps~",
-        ws_filt_fd_cyclesteps: "~ws_filt_fd_cyclesteps~",
-        ws_filt_fd_min: "~ws_filt_fd_min~",
-        ws_filt_fd_max: "~ws_filt_fd_max~",
-        ws_filt_fd_chance: "~ws_filt_fd_chance~"
-    }
-    setFormValues(document.forms[0], cfg);
+        var cfg_f0 =
+        {
+            ws_isenable: "~ws_isenable~",
+        }
+        setFormValues(document.getElementsByName("ws_isenable"), cfg_f0);
 
+        var cfg_f1 =
+        {
+            ws_filt_rbw_enbl: "~ws_filt_rbw_enbl~",
+            ws_filt_rbw_huesteps: "~ws_filt_rbw_huesteps~",
+            ws_filt_rbw_cyclesteps: "~ws_filt_rbw_cyclesteps~",
+
+            ws_filt_fd_enbl: "~ws_filt_fd_enbl~",
+            ws_filt_fd_cyclesteps: "~ws_filt_fd_cyclesteps~",
+            ws_filt_fd_min: "~ws_filt_fd_min~",
+            ws_filt_fd_max: "~ws_filt_fd_max~",
+            //ws_filt_fd_chance: "~ws_filt_fd_chance~",
+
+            ws_filt_wave_enbl: "~ws_filt_wave_enbl~",
+            ws_filt_wave_step: "~ws_filt_wave_step~",
+            ws_filt_wave_wavesteps: "~ws_filt_wave_wavesteps~"
+        }
+        setFormValues(document.forms[0], cfg_f1);
+
+        var cfg_f2 =
+        {
+            wifi_mode: "~wifi_mode~",
+            wifi_bgn: "~wifi_bgn~",
+            wifi_txpow: "~wifi_txpow~",
+            wifi_st_ssid: "~wifi_st_ssid~",
+            wifi_st_psw: "~wifi_st_psw~",
+            wifi_st_auth: "~wifi_st_auth~",
+            wifi_st_ip: "~wifi_st_ip~",
+            wifi_ap_ssid: "~wifi_ap_ssid~",
+            wifi_ap_psw: "~wifi_ap_psw~",
+            wifi_ap_auth: "~wifi_ap_auth~",
+            wifi_ap_ip: "~wifi_ap_ip~"
+        }
+        setFormValues(document.forms[1], cfg_f2);
+
+        var cfg_hsv =
+        {
+            ws_filt_const_hue: "~ws_filt_const_hue~",
+            ws_filt_const_sat: "~ws_filt_const_sat~",
+            ws_filt_const_value: "~ws_filt_const_value~"
+        }
+        loadHSV(colorPickerT, cfg_hsv);
 	</script>
 </body>
 </html> 

@@ -96,7 +96,7 @@ AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=-1
+AnnotateOrder=0
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=0
@@ -133,7 +133,7 @@ Value=A_D.000000.001
 
 [Parameter3]
 Name=GlobalProjectName
-Value=RTL-00 WS2812
+Value=Глупая гирлянда
 
 [Parameter4]
 Name=GlobalOrganizationName
@@ -785,11 +785,6 @@ OutputName3=AutoCAD dwg/dxf File Schematic
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
-OutputType4=ExportIDF
-OutputName4=Export IDF
-OutputDocumentPath4=
-OutputVariantName4=
-OutputDefault4=0
 
 [Modification Levels]
 Type1=1

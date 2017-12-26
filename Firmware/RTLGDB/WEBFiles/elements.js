@@ -38,6 +38,22 @@ function openFilterSettings(chkbx)
 	sendFilterState(chkbx.name, chkbx.checked);
 }
 
+function changeOnOff(field)
+{
+    if (field.className === 'off')
+    {
+        sendFilterParam('ws_isenable', "1");
+        field.src = 'on.gif';
+        field.className = 'on';
+    }
+    else
+    {
+        sendFilterParam('ws_isenable', "0");
+        field.src = 'off.gif';
+        field.className = 'off';
+    }
+}
+
 function setFormValues(form, cfg)
 {
     var name, field;
@@ -54,6 +70,19 @@ function setFormValues(form, cfg)
             {
                 field.checked = cfg[name] === '1' ? true : false;
                 openFilterSettings(field);
+            }
+            else if (field.type === 'image')
+            {
+                if (cfg[name] == '1')
+                {
+                    field.src = 'on.gif';
+                    field.className = 'on';
+                }
+                else
+                {
+                    field.src = 'off.gif';
+                    field.className = 'off';
+                }
             }
             else
             {
@@ -76,6 +105,65 @@ function sendFilterState(filtName, en)
 	    //console.log(xhr.responseText);
 	};
 	xhr.send(params);
+}
+
+function sendHSV(HSV)
+{
+    var xhr = new XMLHttpRequest();
+    var hue = Math.round(255 * HSV.h);
+    var sat = Math.round(255 * HSV.s);
+    var val = Math.round(255 * HSV.v);
+
+    var params = 'ws_filt_const_hue=' + encodeURIComponent(hue) +
+                 '&ws_filt_const_sat=' + encodeURIComponent(sat) +
+                 '&ws_filt_const_value=' + encodeURIComponent(val) +
+                 '&ws_filt_const_update=' + encodeURIComponent('1');
+    xhr.open("POST", '/index.html', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+
+    };
+    xhr.send(params);
+}
+
+function loadHSV(picker, HSV)
+{
+    var hue = HSV[0] / 255;
+    var sat = HSV[1] / 255;
+    var val = HSV[2] / 255;
+
+    var rgb = hsvToRgb(hue, sat, val);
+    var hex = '#' + byteToHex(rgb[0]) + byteToHex(rgb[1]) + byteToHex(rgb[2]);
+
+    picker.setColorByHex(hex);
+}
+
+function byteToHex(d)
+{
+    var hex = d.toString(16);
+    hex = "00".substr(0, 2 - hex.length) + hex;
+    return hex;
+}
+
+function hsvToRgb(h, s, v) {
+    var r, g, b;
+
+    var i = Math.floor(h * 6);
+    var f = h * 6 - i;
+    var p = v * (1 - s);
+    var q = v * (1 - f * s);
+    var t = v * (1 - (1 - f) * s);
+
+    switch (i % 6) {
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+    }
+
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
 function sendFilterParam(filtParam, val)

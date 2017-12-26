@@ -48,6 +48,9 @@ typedef struct
 {
 	uint8_t enabled;
 	uint32_t valid;
+	uint8_t wave_steps;
+	uint8_t step;
+	uint8_t angle;
 } ctx_wave_t;
 #pragma endregion
 
@@ -55,6 +58,10 @@ typedef struct
 typedef struct
 {
 	uint8_t enabled;
+	uint8_t hue;
+	uint8_t sat;
+	uint8_t value;
+	uint8_t update;
 	uint32_t valid;
 } ctx_const_t;
 #pragma endregion
@@ -66,6 +73,7 @@ typedef struct
 	uint32_t strip_len;
 	uint32_t brightness;
 	uint32_t delay;
+	uint8_t isEnable;
 } strip_handler_t;
 
 int32_t ledFilter_Init(strip_handler_t *strip, ws2812_t *ws2812);
@@ -76,7 +84,8 @@ void ledFilter_InitFade(ctx_fade_t *ctx);
 void ledFilter_Fade(ctx_fade_t *ctx, strip_handler_t *strip);
 void ledFilter_InitWave(ctx_wave_t *ctx);
 void ledFilter_Wave(ctx_wave_t *ctx, strip_handler_t *strip);
-
+void ledFilter_InitConstant(ctx_const_t *ctx);
+void ledFilter_Constant(ctx_const_t *ctx, strip_handler_t *strip);
 void ledFilter_SetDefualtValue(strip_handler_t *strip, uint8_t val);
 
 #endif // _LEDFILTERS_H_

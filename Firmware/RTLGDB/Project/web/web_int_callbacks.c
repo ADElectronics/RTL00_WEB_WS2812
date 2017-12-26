@@ -404,7 +404,26 @@ void ICACHE_FLASH_ATTR web_int_callback(TCP_SERV_CONN *ts_conn, uint8 *cstr)
 					else ifcmp("max") tcp_puts("%d", filt_fade.max);
 					else ifcmp("cyclesteps") tcp_puts("%d", filt_fade.steps);
 				}
+				else ifcmp("wave_")
+				{
+					cstr += 5;
+
+					ifcmp("enbl") tcp_puts("%d", filt_wave.enabled);
+					else ifcmp("step") tcp_puts("%d", filt_wave.step);
+					else ifcmp("wavesteps") tcp_puts("%d", filt_wave.wave_steps);
+				}
+				else ifcmp("const_")
+				{
+					cstr += 6;
+
+					ifcmp("enbl") tcp_puts("%d", filt_const.enabled);
+					else ifcmp("hue") tcp_puts("%d", filt_const.hue);
+					else ifcmp("sat") tcp_puts("%d", filt_const.sat);
+					else ifcmp("value") tcp_puts("%d", filt_const.value);
+				}
 			}
+			else ifcmp("isenable") tcp_puts("%d", strip.isEnable);
+			else ifcmp("striplen") tcp_puts("%d", strip.strip_len);
 		}
 // **************************************************************************************************** //
 // **************************************************************************************************** //

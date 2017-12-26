@@ -113,7 +113,27 @@ void ICACHE_FLASH_ATTR web_int_vars(TCP_SERV_CONN *ts_conn, uint8 *pcmd, uint8 *
 				else ifcmp("max") filt_fade.max = (uint8_t)val;
 				else ifcmp("cyclesteps") filt_fade.steps = (uint8_t)val;
 			}
+			else ifcmp("wave_")
+			{
+				cstr += 5;
+
+				ifcmp("enbl") filt_wave.enabled = (uint8_t)val;
+				else ifcmp("step") filt_wave.step = (uint8_t)val;
+				else ifcmp("wavesteps") filt_wave.wave_steps = (uint8_t)val;
+			}
+			else ifcmp("const_")
+			{
+				cstr += 6;
+
+				ifcmp("enbl") filt_const.enabled = (uint8_t)val;
+				else ifcmp("hue") filt_const.hue = (uint8_t)val;
+				else ifcmp("sat") filt_const.sat = (uint8_t)val;
+				else ifcmp("value") filt_const.value = (uint8_t)val;
+				else ifcmp("update") filt_const.update = (uint8_t)val;
+			}
 		}
+		else ifcmp("isenable") strip.isEnable = (uint8_t)val;
+		//else ifcmp("striplen") strip.strip_len = (uint8_t)val;
 	}
 // **************************************************************************************************** //
 // **************************************************************************************************** //

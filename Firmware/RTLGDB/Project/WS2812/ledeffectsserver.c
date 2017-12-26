@@ -9,50 +9,48 @@ SemaphoreHandle_t cfg_sema = NULL;
 
 ctx_rainbow_t filt_rainbow;
 ctx_fade_t filt_fade;
-
-
+ctx_const_t filt_const;
+ctx_wave_t filt_wave;
 
 void ledEffectsServer_Init()
 {
-	cfg_sema = xSemaphoreCreateMutex();
-
 	ws2812_cfg = ws2812_Init(WS2812_LEDS_MAX);
 	if (ws2812_cfg == NULL)
 	{
 		printf("[%s] ws2812_Init() failed\n", __func__);
-		goto error;
+		return;
 	}
 
 	ledFilter_Init(&strip, ws2812_cfg);
 
 	ledFilter_InitRainbow(&filt_rainbow);
 	ledFilter_InitFade(&filt_fade);
+	ledFilter_InitConstant(&filt_const);
+	ledFilter_InitWave(&filt_wave);
 
 	ledFilter_SetDefualtValue(&strip, MAX_STRIP_BRIGHT);
-	filt_fade.enabled = 1;
+}
+
+void ledEffectsServer_Task()
+{
+	cfg_sema = xSemaphoreCreateMutex();
 
 	while (1)
 	{
-		if(xSemaphoreTake(cfg_sema, 5 * configTICK_RATE_HZ))
+		if (xSemaphoreTake(cfg_sema, 5 * configTICK_RATE_HZ))
 		{
 			ledFilter_Rainbow(&filt_rainbow, &strip);
+			ledFilter_Constant(&filt_const, &strip);
+			ledFilter_Wave(&filt_wave, &strip);
 			ledFilter_Fade(&filt_fade, &strip);
+			
 
 			ws2812_Update(ws2812_cfg, strip.hsv_vals, strip.strip_len, strip.delay);
-
 			xSemaphoreGive(cfg_sema);
 		}
 		WDGRefresh();
 	}
-
-error:
-	while (1)
-	{
-		vTaskDelay(1000);
-	}
 }
-
-
 /*
 
 void ledEffectsServer_LoadConfigFromFlash()

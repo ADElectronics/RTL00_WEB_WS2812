@@ -1,17 +1,27 @@
 body {font-family: Arial;}
 
+.hblockcont { 
+    text-align:center;
+	align:center;
+}
+
 fieldset { 
     display: block;
     border: 0px;
 	margin: 20px;
 }
 
+.on, .off { 
+    width: 80px;
+	height: 80px;
+}
 .range { 
     max-width: 600px;
 }
 
 .tab {
     overflow: hidden;
+    height: 45px;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
 }
@@ -47,6 +57,57 @@ fieldset {
     padding: 6px 6px;
     max-width: 700px;
     border: 1px solid #ccc;
+}
+
+.button {
+    background-color: #00cc99;
+    border: none;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.select {
+   //background-color:#00cc99;
+   width: 180px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 28px;
+}
+
+.inputtext {
+   width: 180px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   text-align: center;
+   height: 26px;
+}
+
+/* https://www.w3schools.com/html/html_tables.asp */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+	max-width: 500px;
+}
+
+.td1st {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 4px;
+}
+
+td {
+    border: 0px solid #dddddd;
+    text-align: right;
+    padding: 4px;
 }
 
 /* http://dimox.name/custom-checkboxes-and-radio-buttons-using-css-only/ */
