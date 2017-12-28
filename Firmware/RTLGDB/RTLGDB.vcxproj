@@ -81,7 +81,9 @@
     <None Include="userset.mk" />
     <None Include="WEBFiles\elements.css" />
     <None Include="WEBFiles\elements.js" />
+    <None Include="WEBFiles\filters.html" />
     <None Include="WEBFiles\index.html" />
+    <None Include="WEBFiles\settings.html" />
     <None Include="webfs.mk" />
   </ItemGroup>
   <!--Import Project="$(MSBuildThisFileDirectory)\Microsoft.cpp.Linux.targets" /-->

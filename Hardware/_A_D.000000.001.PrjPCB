@@ -124,20 +124,20 @@ GenerateClassCluster=0
 DocumentUniqueId=TBYWGQNE
 
 [Parameter1]
-Name=GlobalProjectRevision
-Value=0
+Name=GlobalOrganizationName
+Value=A_D Electronics
 
 [Parameter2]
-Name=GlobalProjectNumber
-Value=A_D.000000.001
-
-[Parameter3]
 Name=GlobalProjectName
 Value=Глупая гирлянда
 
+[Parameter3]
+Name=GlobalProjectNumber
+Value=A_D.000000.001
+
 [Parameter4]
-Name=GlobalOrganizationName
-Value=A_D Electronics
+Name=GlobalProjectRevision
+Value=0
 
 [Configuration1]
 Name=Default Configuration
@@ -231,6 +231,96 @@ OutputName6=XSpice Netlist
 OutputDocumentPath6=
 OutputVariantName6=
 OutputDefault6=0
+OutputType7=CadnetixNetlist
+OutputName7=Cadnetix Netlist
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
+OutputType8=CalayNetlist
+OutputName8=Calay Netlist
+OutputDocumentPath8=
+OutputVariantName8=
+OutputDefault8=0
+OutputType9=EDIF
+OutputName9=EDIF for PCB
+OutputDocumentPath9=
+OutputVariantName9=
+OutputDefault9=0
+OutputType10=EESofNetlist
+OutputName10=EESof Netlist
+OutputDocumentPath10=
+OutputVariantName10=
+OutputDefault10=0
+OutputType11=IntergraphNetlist
+OutputName11=Intergraph Netlist
+OutputDocumentPath11=
+OutputVariantName11=
+OutputDefault11=0
+OutputType12=MentorBoardStationNetlist
+OutputName12=Mentor BoardStation Netlist
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+OutputType13=MultiWire
+OutputName13=MultiWire
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+OutputType14=OrCadPCB2Netlist
+OutputName14=Orcad/PCB2 Netlist
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+OutputType15=Pcad
+OutputName15=Pcad for PCB
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+OutputType16=PCADnltNetlist
+OutputName16=PCADnlt Netlist
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+OutputType17=Protel2Netlist
+OutputName17=Protel2 Netlist
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
+OutputType18=ProtelNetlist
+OutputName18=Protel
+OutputDocumentPath18=
+OutputVariantName18=
+OutputDefault18=0
+OutputType19=RacalNetlist
+OutputName19=Racal Netlist
+OutputDocumentPath19=
+OutputVariantName19=
+OutputDefault19=0
+OutputType20=RINFNetlist
+OutputName20=RINF Netlist
+OutputDocumentPath20=
+OutputVariantName20=
+OutputDefault20=0
+OutputType21=SciCardsNetlist
+OutputName21=SciCards Netlist
+OutputDocumentPath21=
+OutputVariantName21=
+OutputDefault21=0
+OutputType22=TangoNetlist
+OutputName22=Tango Netlist
+OutputDocumentPath22=
+OutputVariantName22=
+OutputDefault22=0
+OutputType23=TelesisNetlist
+OutputName23=Telesis Netlist
+OutputDocumentPath23=
+OutputVariantName23=
+OutputDefault23=0
+OutputType24=WireListNetlist
+OutputName24=WireList Netlist
+OutputDocumentPath24=
+OutputVariantName24=
+OutputDefault24=0
 
 [OutputGroup2]
 Name=Simulator Outputs
@@ -260,10 +350,18 @@ TargetPrinter=Virtual Printer
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=Composite
 OutputName1=Composite Drawing
-OutputDocumentPath1=
+OutputDocumentPath1=C:\Users\Andrew\Vector\USER\A_D\GitHub\RTL00_WEB_WS2812\Hardware\A_D.000000.001.PcbDoc
 OutputVariantName1=
 OutputDefault1=0
-PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+PageOptions1=Record=PageOptions|CenterHorizontal=False|CenterVertical=False|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=2|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=1|PaperLength=2970|PaperWidth=2100|Scale=100|PaperSource=7|PrintQuality=600|MediaType=1|DitherType=10|PrintScaleMode=0|PaperKind=A4|PaperIndex=9
+Configuration1_Name1=OutputConfigurationParameter1
+Configuration1_Item1=DesignatorDisplayMode=Physical|PrintArea=DesignExtent|PrintAreaLowerLeftCornerX=0|PrintAreaLowerLeftCornerY=0|PrintAreaUpperRightCornerX=0|PrintAreaUpperRightCornerY=0|Record=PcbPrintView
+Configuration1_Name2=OutputConfigurationParameter2
+Configuration1_Item2=IncludeBottomLayerComponents=True|IncludeMultiLayerComponents=True|IncludeTopLayerComponents=True|IncludeViewports=True|Index=0|Mirror=True|Name=Multilayer Composite Print|PadNumberFontSize=14|Record=PcbPrintOut|ShowHoles=False|ShowPadNets=False|ShowPadNumbers=False|SubstituteFonts=False
+Configuration1_Name3=OutputConfigurationParameter3
+Configuration1_Item3=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name4=OutputConfigurationParameter4
+Configuration1_Item4=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
 OutputType2=PCB 3D Print
 OutputName2=PCB 3D Print
 OutputDocumentPath2=
@@ -785,6 +883,16 @@ OutputName3=AutoCAD dwg/dxf File Schematic
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
+OutputType4=ExportIDF
+OutputName4=Export IDF
+OutputDocumentPath4=
+OutputVariantName4=
+OutputDefault4=0
+OutputType5=NetList Sch
+OutputName5=NetList Sch
+OutputDocumentPath5=
+OutputVariantName5=
+OutputDefault5=0
 
 [Modification Levels]
 Type1=1

@@ -52,6 +52,7 @@ struct SystemCfg syscfg = {
 
 SemaphoreHandle_t sema_WEBReady = NULL;
 
+extern void ShowMemInfo(void);
 void connect_start(void)
 {
 	info_printf("\%s: Time at start %d ms.\n", __func__, xTaskGetTickCount());
@@ -106,7 +107,7 @@ void user_init_thrd(void)
 
 		if (!syscfg.cfg.b.debug_print_enable) print_off = 1;
 
-		console_init();
+		//console_init();
 		WEBFSInit();
 		wifi_init(); // Load cfg, init WiFi + LwIP init, WiFi start if wifi_cfg.mode !=  RTW_MODE_NONE 
 
@@ -126,6 +127,7 @@ void user_init_thrd(void)
 
 		xSemaphoreGive(sema_WEBReady);
 	}
+	ShowMemInfo();
 	vTaskDelete(NULL);
 }
 

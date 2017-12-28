@@ -41,6 +41,12 @@
     <None Include="WEBFiles\index.html">
       <Filter>WEBFiles</Filter>
     </None>
+    <None Include="WEBFiles\filters.html">
+      <Filter>WEBFiles</Filter>
+    </None>
+    <None Include="WEBFiles\settings.html">
+      <Filter>WEBFiles</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">

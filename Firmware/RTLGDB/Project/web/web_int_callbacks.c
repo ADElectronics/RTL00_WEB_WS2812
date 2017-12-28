@@ -422,7 +422,7 @@ void ICACHE_FLASH_ATTR web_int_callback(TCP_SERV_CONN *ts_conn, uint8 *cstr)
 					else ifcmp("value") tcp_puts("%d", filt_const.value);
 				}
 			}
-			else ifcmp("isenable") tcp_puts("%d", strip.isEnable);
+			else ifcmp("isenable") tcp_puts("%d", strip.enable);
 			else ifcmp("striplen") tcp_puts("%d", strip.strip_len);
 		}
 // **************************************************************************************************** //

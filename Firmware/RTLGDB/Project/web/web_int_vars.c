@@ -132,7 +132,13 @@ void ICACHE_FLASH_ATTR web_int_vars(TCP_SERV_CONN *ts_conn, uint8 *pcmd, uint8 *
 				else ifcmp("update") filt_const.update = (uint8_t)val;
 			}
 		}
-		else ifcmp("isenable") strip.isEnable = (uint8_t)val;
+		else ifcmp("isenable")
+		{
+			if(val > 0)
+				strip.try_enable = (uint8_t)val;
+			else 
+				strip.enable = 0;
+		}
 		//else ifcmp("striplen") strip.strip_len = (uint8_t)val;
 	}
 // **************************************************************************************************** //
@@ -295,7 +301,9 @@ void ICACHE_FLASH_ATTR web_int_vars(TCP_SERV_CONN *ts_conn, uint8 *pcmd, uint8 *
        			  os_memset(lwip_host_name[1], 0, LWIP_NETIF_HOSTNAME_SIZE);
        			  os_memcpy(lwip_host_name[1], pvar, len);
        		  }
+#ifdef USE_NETBIOS
        		  netbios_set_name(WLAN_AP_NETIF_NUM, lwip_host_name[1]);
+#endif
        		  if(wifi_cfg.save_flg & BID_AP_HOSTNAME) {
        			  WEB_SRV_QFNK x;
        			  x.fnc = write_wifi_cfg;
@@ -351,7 +359,9 @@ void ICACHE_FLASH_ATTR web_int_vars(TCP_SERV_CONN *ts_conn, uint8 *pcmd, uint8 *
        		  if(len) {
        			  os_memset(lwip_host_name[0], 0, LWIP_NETIF_HOSTNAME_SIZE);
        			  os_memcpy(lwip_host_name[0], pvar, len);
+#ifdef USE_NETBIOS
        			  netbios_set_name(WLAN_ST_NETIF_NUM, lwip_host_name[0]);
+#endif
        		  }
        		  if(wifi_cfg.save_flg & BID_ST_HOSTNAME) {
        			  WEB_SRV_QFNK x;

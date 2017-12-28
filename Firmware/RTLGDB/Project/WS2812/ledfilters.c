@@ -45,9 +45,10 @@ int32_t ledFilter_Init(strip_handler_t *strip, ws2812_t *ws2812)
         memset(strip, 0xff, sizeof(strip_handler_t));
         strip->check = LEDFILTERS_CFG_CHECKWORD;
         strip->strip_len = DEF_STRIP_LEN;
-        strip->delay = 10;
+        strip->delay = 10; // общая скорость
         strip->brightness = MAX_STRIP_BRIGHT;
-		strip->isEnable = 1;
+		strip->enable = 1;
+		strip->try_enable = 0;
         cfg_updated = 1;
     }
 
@@ -114,7 +115,7 @@ void ledFilter_Rainbow(ctx_rainbow_t *ctx, strip_handler_t *strip)
 	ws2812_hsv_t tmp_hsv;
 	uint8_t tmp_hue;
 
-	if (ctx->enabled == 0 || strip->isEnable == 0) return;
+	if (ctx->enabled == 0 || strip->enable == 0) return;
 
 	tmp_hue = ctx->curr_hue;
 	tmp_hsv.sat = 255;
@@ -165,7 +166,7 @@ void ledFilter_Fade(ctx_fade_t *ctx, strip_handler_t *strip)
 {
 	uint32_t i;
 
-	if (ctx->enabled == 0 || strip->isEnable == 0) return;
+	if (ctx->enabled == 0 || strip->enable == 0) return;
 
 	if (ctx->curr_val == 0)
 	{
@@ -239,7 +240,7 @@ void ledFilter_Wave(ctx_wave_t *ctx, strip_handler_t *strip)
 {
 	uint32_t i, j;
 	uint8_t tmp_angle = 0;
-	if (ctx->enabled == 0 || strip->isEnable == 0) return;
+	if (ctx->enabled == 0 || strip->enable == 0) return;
 
 	tmp_angle = ctx->angle;
 	for (i = 0, j = ctx->wave_steps; i < strip->strip_len; i++)
@@ -249,7 +250,7 @@ void ledFilter_Wave(ctx_wave_t *ctx, strip_handler_t *strip)
 			j += ctx->wave_steps;
 			tmp_angle = ctx->angle;
 		}
-		strip->hsv_vals[i].value = sin_table[tmp_angle]/2;
+		strip->hsv_vals[i].value = sin_table[tmp_angle];
 		tmp_angle += 255 / ctx->wave_steps;
 		//tmp_angle %= 256;
 	}
@@ -276,7 +277,22 @@ void ledFilter_InitConstant(ctx_const_t *ctx)
 void ledFilter_Constant(ctx_const_t *ctx, strip_handler_t *strip)
 {
 	uint32_t i;
-	if (strip->isEnable == 0)
+	if (strip->try_enable)
+	{
+		for (i = 0; i < strip->strip_len; i++)
+		{
+			if (strip->hsv_vals[i].value < strip->brightness)
+				strip->hsv_vals[i].value++;
+			else
+			{
+				strip->enable = 1;
+				strip->try_enable = 0;
+			}
+		}
+
+		return;
+	}
+	else if (strip->enable == 0)
 	{
 		for (i = 0; i < strip->strip_len; i++)
 		{

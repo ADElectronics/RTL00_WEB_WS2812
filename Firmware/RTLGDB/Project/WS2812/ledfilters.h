@@ -73,7 +73,8 @@ typedef struct
 	uint32_t strip_len;
 	uint32_t brightness;
 	uint32_t delay;
-	uint8_t isEnable;
+	uint8_t enable;
+	uint8_t try_enable;
 } strip_handler_t;
 
 int32_t ledFilter_Init(strip_handler_t *strip, ws2812_t *ws2812);

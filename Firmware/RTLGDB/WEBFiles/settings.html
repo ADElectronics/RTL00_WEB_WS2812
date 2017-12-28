@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Глупая гирлянда - Настройки</title>
+    <link href="elements.css" rel="stylesheet">
+    <style></style>
+</head>
+<body>
+    <form method="post">
+        <table>
+            <tr>
+                <td class="td1st">Режим Wi-Fi</td>
+                <td>
+                    <select class="select" name='wifi_mode'>
+                        <option value='1'>Клиент</option>
+                        <option value='2'>Точка доступа</option>
+                        <option value='3'>Клиент + Точка доступа</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">IEEE PHY</td>
+                <td>
+                    <select class="select" name='wifi_bgn'>
+                        <option value='1'>802.11b</option>
+                        <option value='3'>802.11g</option>
+                        <option value='11'>802.11n</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Мощность передачи</td>
+                <td>
+                    <select class="select" name='wifi_txpow'>
+                        <option value='0'>100%</option>
+                        <option value='1'>75%</option>
+                        <option value='2'>50%</option>
+                        <option value='3'>25%</option>
+                        <option value='4'>12.5%</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td1st"><b>Настройки клиента:</b></td>
+            </tr>
+            <tr>
+                <td class="td1st">SSID</td>
+                <td>
+                    <input name="wifi_st_ssid" class="inputtext" maxlength='31' value='~wifi_st_ssid~' />
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Пароль</td>
+                <td>
+                    <input name="wifi_st_psw" class="inputtext" maxlength='63' value='~wifi_st_psw~' />
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Аутентификация</td>
+                <td>
+                    <select class="select" name='wifi_st_auth'>
+                        <option value='0'>Open</option>
+                        <option value='1'>WEP PSK</option>
+                        <option value='2'>WEP Shared</option>
+                        <option value='3'>WPA TKIP</option>
+                        <option value='4'>WPA AES</option>
+                        <option value='5'>WPA2 TKIP</option>
+                        <option value='6'>WPA2 AES</option>
+                        <option value='7'>WPA2 Mixed</option>
+                        <option value='8'>WPA2/WPA AES</option>
+                        <option value='9'>Unknown</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">IP</td>
+                <td>
+                    <input name="wifi_st_ip" class="inputtext" maxlength='31' value='~wifi_st_ip~' />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td1st"><b>Настройки точки доступа:</b></td>
+            </tr>
+            <tr>
+                <td class="td1st">SSID</td>
+                <td>
+                    <input name="wifi_ap_ssid" class="inputtext" maxlength='31' value='~wifi_ap_ssid~' />
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Пароль</td>
+                <td>
+                    <input name="wifi_ap_psw" class="inputtext" maxlength='63' value='~wifi_ap_psw~' />
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Аутентификация</td>
+                <td>
+                    <select class="select" name='wifi_ap_auth'>
+                        <option value='0'>Open</option>
+                        <option value='1'>WPA_WPA2_PSK</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">IP</td>
+                <td>
+                    <input name="wifi_ap_ip" class="inputtext" maxlength='31' value='~wifi_ap_ip~' />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type='hidden' name='wifi_newcfg' value='0xffff' />
+                    <button class="button">Применить...</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script src="colorpicker.min.js"></script>
+    <script type="text/javascript">
+        var cfg_f2 =
+        {
+            wifi_mode: "~wifi_mode~",
+            wifi_bgn: "~wifi_bgn~",
+            wifi_txpow: "~wifi_txpow~",
+            wifi_st_ssid: "~wifi_st_ssid~",
+            wifi_st_psw: "~wifi_st_psw~",
+            wifi_st_auth: "~wifi_st_auth~",
+            wifi_st_ip: "~wifi_st_ip~",
+            wifi_ap_ssid: "~wifi_ap_ssid~",
+            wifi_ap_psw: "~wifi_ap_psw~",
+            wifi_ap_auth: "~wifi_ap_auth~",
+            wifi_ap_ip: "~wifi_ap_ip~"
+        }
+        setFormValues(document.forms[1], cfg_f2);
+    </script>
+</body>
+</html> 

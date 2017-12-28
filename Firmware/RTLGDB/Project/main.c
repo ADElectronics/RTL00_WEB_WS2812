@@ -81,8 +81,8 @@ int main(void)
 #endif
 
 	// wlan & user_start intialization
-	xTaskCreate(user_init_thrd, "user_init", 1024, NULL, tskIDLE_PRIORITY + 1 + PRIORITIE_OFFSET, NULL);
-	xTaskCreate(user_ws_thrd, "user_ws", 1024, NULL, tskIDLE_PRIORITY + 1 + PRIORITIE_OFFSET, NULL);
+	xTaskCreate(user_init_thrd, "user_init", 512, NULL, tskIDLE_PRIORITY + 2 + PRIORITIE_OFFSET, NULL);
+	xTaskCreate(user_ws_thrd, "user_ws", 512, NULL, tskIDLE_PRIORITY + 1 + PRIORITIE_OFFSET, NULL);
 
 	// Enable Schedule, Start Kernel
 #if defined(CONFIG_KERNEL) && !TASK_SCHEDULER_DISABLED

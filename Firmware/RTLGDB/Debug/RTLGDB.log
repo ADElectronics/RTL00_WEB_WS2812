@@ -1,5 +1,7 @@
 ﻿  ===========================================================
   Compile (Debug)
+  USDK/component/common/api/wifi_api.c
+  USDK/component/common/api/wifi_api_scan.c
   ===========================================================
   Link (Debug)
   ===========================================================
@@ -13,9 +15,9 @@
   copy size 8520
   ===========================================================
   Create image2ns (Debug/bin/ram_2.ns.bin)
-  b:268460032 s:268460032 e:268728976
-  size 268944
-  copy size 268944
+  b:268460032 s:268460032 e:268723820
+  size 263788
+  copy size 263788
   ===========================================================
   Create image3 (SDRAM, Debug/bin/sdram.p.bin)
   30000000 30000000
@@ -24,21 +26,21 @@
   copy size 0
   ===========================================================
   Make OTA image (Debug/bin/ota.bin)
-  size = 268976 
+  size = 263820 
   
-  checksum 1aa0f6e
+  checksum 1a2dc5a
   
   ===========================================================
   Create image2p (Debug/bin/ram_2.p.bin)
-  b:268460032 s:268460032 e:268728976
-  size 268944
-  copy size 268944
+  b:268460032 s:268460032 e:268723820
+  size 263788
+  copy size 263788
   ===========================================================
   Make Flash image (Debug/bin/ram_all.bin)
   total 44 k, padding data 0, name Debug/bin/ram_all.bin
   Original size zd
   Padding  size zd
   -----------------------------------------------------------
-  Image (Debug/bin/ota.bin) size 268980 bytes
-  Image (Debug/bin/ram_all.bin) size 314032 bytes
+  Image (Debug/bin/ota.bin) size 263824 bytes
+  Image (Debug/bin/ram_all.bin) size 308876 bytes
   ===========================================================

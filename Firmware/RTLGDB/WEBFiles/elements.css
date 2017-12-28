@@ -1,5 +1,21 @@
 body {font-family: Arial;}
+form{
+	width:100%;
+}
+#child_page{
+	margin:0 auto;width:700px;height:800px;display: block;
+}
 
+#picker-wrapper{
+	position:relative;
+	float:left;
+	width:100%;
+	
+}
+#picker{
+	margin:0 auto;width:300px;
+	display: block;
+}
 .hblockcont { 
     text-align:center;
 	align:center;
@@ -46,10 +62,17 @@ fieldset {
 }
 
 .tabcontent {
-    display: none;
+    /*display: none;*/
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+.tabcontentframe {
+   border-style:none;
+   width:100%;
+   margin-top:20px;
+   height:1150px;
+   border-spacing:0px;
 }
 
 .filtercontent {
@@ -95,7 +118,7 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-	max-width: 500px;
+	
 }
 
 .td1st {

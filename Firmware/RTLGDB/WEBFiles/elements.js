@@ -1,4 +1,5 @@
-function openTab(evt, tabID) 
+/*
+function openTab(evt, tabID)
 {
 	// Показываем выбранный контент
     var i, tabcontent, tablinks;
@@ -19,7 +20,7 @@ function openTab(evt, tabID)
     }   
     evt.currentTarget.className += " active";
 }
-
+*/
 function openFilterSettings(chkbx)
 {
 	var i, content;
@@ -128,9 +129,9 @@ function sendHSV(HSV)
 
 function loadHSV(picker, HSV)
 {
-    var hue = HSV[0] / 255;
-    var sat = HSV[1] / 255;
-    var val = HSV[2] / 255;
+    var hue = HSV.ws_filt_const_hue / 255;
+    var sat = HSV.ws_filt_const_sat / 255;
+    var val = HSV.ws_filt_const_value / 255;
 
     var rgb = hsvToRgb(hue, sat, val);
     var hex = '#' + byteToHex(rgb[0]) + byteToHex(rgb[1]) + byteToHex(rgb[2]);
