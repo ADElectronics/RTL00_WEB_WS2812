@@ -3,7 +3,10 @@ form{
 	width:100%;
 }
 #child_page{
-	margin:0 auto;width:700px;height:800px;display: block;
+	margin:0 auto;
+	width:700px;
+	height:800px;
+	display: block;
 }
 
 #picker-wrapper{
@@ -13,7 +16,8 @@ form{
 	
 }
 #picker{
-	margin:0 auto;width:300px;
+	margin:0 auto;
+	width:300px;
 	display: block;
 }
 .hblockcont { 

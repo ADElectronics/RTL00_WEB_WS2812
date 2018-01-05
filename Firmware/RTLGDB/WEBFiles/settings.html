@@ -10,6 +10,51 @@
     <form method="post">
         <table>
             <tr>
+                <td class="td1st"><b>Настройки пользовательской кнопки:</b></td>
+            </tr>
+            <tr>
+                <td class="td1st">Кратковременное нажатие</td>
+                    <td>
+                        <select class="select" name='button_shortmode'>
+                            <option value='0'>Отключено</option>
+                        </select>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Долговременное нажатие</td>
+                    <td>
+                        <select class="select" name='button_longmode'>
+                            <option value='0'>Отключено</option>
+                        </select>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st"><b>Настройки светодиодов:</b></td>
+            </tr>
+            <tr>
+                <td class="td1st">Светодиод нотификации (зел.)</td>
+                    <td>
+                        <select class="select" name='button_longmode'>
+                            <option value='0'>Отключен</option>
+                        </select>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st">Светодиод ошибки (кр.)</td>
+                    <td>
+                        <select class="select" name='button_longmode'>
+                            <option value='0'>Отключен</option>
+                        </select>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1st"><b>Общие настройки Wi-Fi:</b></td>
+            </tr>
+            <tr>
                 <td class="td1st">Режим Wi-Fi</td>
                 <td>
                     <select class="select" name='wifi_mode'>
@@ -101,7 +146,7 @@
                 <td>
                     <select class="select" name='wifi_ap_auth'>
                         <option value='0'>Open</option>
-                        <option value='1'>WPA_WPA2_PSK</option>
+                        <option value='1'>WPA\WPA2\PSK</option>
                     </select>
                 </td>
             </tr>
@@ -123,8 +168,9 @@
     </form>
 
     <script src="colorpicker.min.js"></script>
-    <script type="text/javascript">
-        var cfg_f2 =
+    <script src="elements.js"></script>
+	<script type="text/javascript">
+        var cfg_wifi =
         {
             wifi_mode: "~wifi_mode~",
             wifi_bgn: "~wifi_bgn~",
@@ -138,7 +184,7 @@
             wifi_ap_auth: "~wifi_ap_auth~",
             wifi_ap_ip: "~wifi_ap_ip~"
         }
-        setFormValues(document.forms[1], cfg_f2);
+        setFormValues(document.forms[0], cfg_wifi);
     </script>
 </body>
 </html> 

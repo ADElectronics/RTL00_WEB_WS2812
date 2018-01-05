@@ -72,19 +72,6 @@ function setFormValues(form, cfg)
                 field.checked = cfg[name] === '1' ? true : false;
                 openFilterSettings(field);
             }
-            else if (field.type === 'image')
-            {
-                if (cfg[name] == '1')
-                {
-                    field.src = 'on.gif';
-                    field.className = 'on';
-                }
-                else
-                {
-                    field.src = 'off.gif';
-                    field.className = 'off';
-                }
-            }
             else
             {
                 field.value = cfg[name];

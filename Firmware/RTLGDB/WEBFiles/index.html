@@ -4,15 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Глупая гирлянда</title>
     <link href="elements.css" rel="stylesheet">
-    <style>
-
-	
-	</style>
+    <style>	</style>
 </head>
 <body>
 
 	<div class="hblockcont"> 
-		<input type="image" src="off.gif" class='off' name='ws_isenable' onclick="changeOnOff(this)" />	
+		<input type="image" src="off.gif" class='off' id="ws_isenable" onclick="changeOnOff(this)" />	
 	</div>
 	
 	<div class="tab" align="center">       
@@ -40,14 +37,22 @@
             else if (tabID == '1') document.getElementById("child_page").src = "settings.html";
         }
 
+        function isenable_select(elem, val) {    
+            if (val.ws_isenable == '0') {
+                elem.src = 'off.gif';
+                elem.className = 'off';
+            }
+            else {
+                elem.src = 'on.gif';
+                elem.className = 'on';
+            }
+        }
+
         var cfg_f0 =
         {
             ws_isenable: "~ws_isenable~",
         }
-		document.addEventListener('DOMContentLoaded', function()
-		{ 
-			setFormValues(document.getElementsByName("ws_isenable"), cfg_f0);
-		});
+        isenable_select(document.getElementById("ws_isenable"), cfg_f0);
 	</script>
 </body>
 </html> 

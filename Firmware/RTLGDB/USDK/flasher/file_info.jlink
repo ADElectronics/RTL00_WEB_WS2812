@@ -1,5 +1,5 @@
 define call1
-set $ImageSize = 0x9270
+set $ImageSize = 0x9AC0
 set $ImageAddr = 0x0D0000
 end
 define call2

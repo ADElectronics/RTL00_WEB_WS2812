@@ -1,6 +1,5 @@
 ﻿  ===========================================================
   Compile (Debug)
-  USDK/component/common/api/wifi_api.c
   USDK/component/common/api/wifi_api_scan.c
   ===========================================================
   Link (Debug)
@@ -28,7 +27,7 @@
   Make OTA image (Debug/bin/ota.bin)
   size = 263820 
   
-  checksum 1a2dc5a
+  checksum 1a2dc8a
   
   ===========================================================
   Create image2p (Debug/bin/ram_2.p.bin)
