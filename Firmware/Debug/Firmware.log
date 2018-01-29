@@ -1,0 +1,44 @@
+﻿  ===========================================================
+  Compile (Debug)
+  ===========================================================
+  Link (Debug)
+  ===========================================================
+  Build names map file
+  Debug/obj/Debug.nmap
+  ===========================================================
+  Create image1r (Debug/bin/ram_1.r.bin)
+  b:268438472 s:268438472 e:268446980
+  size 8508
+  append fw head b000
+  copy size 8508
+  ===========================================================
+  Create image2ns (Debug/bin/ram_2.ns.bin)
+  b:268460032 s:268460032 e:268723940
+  size 263908
+  copy size 263908
+  ===========================================================
+  Create image3 (SDRAM, Debug/bin/sdram.p.bin)
+  30000000 30000000
+  b:805306368 s:805306368 e:805306368
+  size 0
+  copy size 0
+  ===========================================================
+  Make OTA image (Debug/bin/ota.bin)
+  size = 263940 
+  
+  checksum 1a33b63
+  
+  ===========================================================
+  Create image2p (Debug/bin/ram_2.p.bin)
+  b:268460032 s:268460032 e:268723940
+  size 263908
+  copy size 263908
+  ===========================================================
+  Make Flash image (Debug/bin/ram_all.bin)
+  total 44 k, padding data 0, name Debug/bin/ram_all.bin
+  Original size zd
+  Padding  size zd
+  -----------------------------------------------------------
+  Image (Debug/bin/ota.bin) size 263944 bytes
+  Image (Debug/bin/ram_all.bin) size 308996 bytes
+  ===========================================================

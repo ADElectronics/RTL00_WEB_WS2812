@@ -1,7 +1,0 @@
-define call1
-set $ImageSize = 0x9AC0
-set $ImageAddr = 0x0D0000
-end
-define call2
-FlasherWrite Debug/bin/WEBFiles.bin $ImageAddr $ImageSize
-end

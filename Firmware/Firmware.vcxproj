@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ApplicationType>LinuxDebugger</ApplicationType>
+    <SecureShellExecutable>ssh</SecureShellExecutable>
+    <RemoteDebuggerExecutable>gdb</RemoteDebuggerExecutable>
+    <LocalDebuggerExecutable>gdb</LocalDebuggerExecutable>
+    <OCDDebuggerServerAddress>localhost:3333</OCDDebuggerServerAddress>
+    <Keyword>IoT</Keyword>
+    <ProjectGuid>{3D8B16B6-9763-48AD-A514-F45680E8613B}</ProjectGuid>
+    <ProjectName>Firmware</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemGroup>
+    <None Include="Assets\LinuxDebugger.xaml" />
+    <None Include="Assets\LocalDebugger.xaml" />
+    <None Include="Assets\OCDDebugger.xaml" />
+    <None Include="Assets\linux_nmake.xaml" />
+    <None Include="makefile" />
+    <None Include="project.mk" />
+    <None Include="$(SDK_PATH)\flasher.mk" />
+    <None Include="$(SDK_PATH)\Makefile" />
+    <None Include="$(SDK_PATH)\paths.mk" />
+    <None Include="$(SDK_PATH)\sdkbuild.mk" />
+    <None Include="$(SDK_PATH)\sdkset.mk" />
+    <None Include="userset.mk" />
+    <None Include="WEBFiles\elements.css" />
+    <None Include="WEBFiles\elements.js" />
+    <None Include="WEBFiles\filters.html" />
+    <None Include="WEBFiles\index.html" />
+    <None Include="WEBFiles\multirange.css" />
+    <None Include="WEBFiles\settings.html" />
+    <None Include="webfs.mk" />
+  </ItemGroup>
+  <!--Import Project="$(MSBuildThisFileDirectory)\Microsoft.cpp.Linux.targets" /-->
+  <!-- To Enable linux debugger -->
+  <PropertyGroup>
+    <UseDefaultDebuggersPropertyPageSchemas>false</UseDefaultDebuggersPropertyPageSchemas>
+    <UseDefaultPropertyPageSchemas>false</UseDefaultPropertyPageSchemas>
+    <_ApplicableDebuggers>Desktop</_ApplicableDebuggers>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\ProjectItemsSchema.xml" />
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\directories.xml" />
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_general.xml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\LinuxDebugger.xaml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\LocalDebugger.xaml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\OCDDebugger.xaml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\linux_nmake.xaml" />
+    <!-- project only rules -->
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_makefile.xml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <!-- Property sheet only rules -->
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_makefile_ps.xml;$(VCTargetsPath)$(LangID)\usermacros.xml">
+      <Context>PropertySheet</Context>
+    </PropertyPageSchema>
+    <!-- File only rules -->
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_file.xml">
+      <Context>File</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+  <ItemGroup>
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\LinuxDebugger.xaml" />
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\LocalDebugger.xaml" />
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\OCDDebugger.xaml" />
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\linux_nmake.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectCapability Include="Linux" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Project\build_info.h" />
+    <ClInclude Include="Project\feep_config.h" />
+    <ClInclude Include="Project\FreeRTOSConfig.h" />
+    <ClInclude Include="Project\lwipopts.h" />
+    <ClInclude Include="Project\main.h" />
+    <ClInclude Include="Project\platform_autoconf.h" />
+    <ClInclude Include="Project\platform_opts.h" />
+    <ClInclude Include="Project\rtl8195a\c_types.h" />
+    <ClInclude Include="Project\rtl8195a\os.h" />
+    <ClInclude Include="Project\rtl8195a\queue.h" />
+    <ClInclude Include="Project\rtl8195a\rom_wps_os.h" />
+    <ClInclude Include="Project\rtl8195a\rtl_common.h" />
+    <ClInclude Include="Project\rtl8195a\rtl_libc.h" />
+    <ClInclude Include="Project\sys_cfg.h" />
+    <ClInclude Include="Project\tcpsrv\tcp_srv_conn.h" />
+    <ClInclude Include="Project\user_config.h" />
+    <ClInclude Include="Project\webfs\webfs.h" />
+    <ClInclude Include="Project\web\websock.h" />
+    <ClInclude Include="Project\web\web_srv.h" />
+    <ClInclude Include="Project\web\web_srv_int.h" />
+    <ClInclude Include="Project\web\web_utils.h" />
+    <ClInclude Include="Project\web\web_websocket.h" />
+    <ClInclude Include="Project\wifi_user_set.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\lwip_netconf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\sdk_ver.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\rtw_wowlan\wifi_wowlan.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\src\utils\os.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\src\utils\rom\rom_wps_os.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\src\wps\wps_defs.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\wifi_conf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\wifi_ind.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\wifi_simple_config.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\wifi_simple_config_parser.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi\wifi_util.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\api\wifi_interactive_ext.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\autoconf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\byteorder\generic.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\byteorder\little_endian.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\byteorder\swab.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\drv_conf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\drv_types.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\ethernet.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\HalPwrSeqCmd.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\HalVerDef.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_com.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_com_phycfg.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_com_reg.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_intf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_pg.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_phy.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\hal_phy_reg.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\ieee80211.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\if_ether.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\ip.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\lxbus_hal.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\lxbus_ops.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\lxbus_osintf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\pack_begin.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\pack_end.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_aes.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_arc4.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_ieee80211.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_md5.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_rc4.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_rtw_message.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_rtw_message_e.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_rtw_psk.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_rtw_security.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rom_sha1.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtl8195a_hal.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtl8711b_hal.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_ap.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_byteorder.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_cmd.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_debug.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_eeprom.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_efuse.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_event.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_ht.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_intfs.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_io.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_ioctl_set.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_led.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_mlme.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_mlme_ext.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_mp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_p2p.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_promisc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_psk.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_pwrctrl.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_qos.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_recv.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_rf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_security.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\rtw_xmit.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\sta_info.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wifi.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wifi_constants.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wifi_lib.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wifi_structures.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wlan_basic_types.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wlan_bssdef.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\include\wlan_lib.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\gspi\gspi_spec.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\hci_intfs.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\hci_spec.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\lxbus\lxbus_spec.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\sdio\sdio_spec.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\freertos\freertos_intfs.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\freertos\freertos_recv.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\freertos\freertos_skbuff.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\freertos\freertos_xmit.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\freertos\wrapper.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\lwip_intf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\netdev.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\osdep_intf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\skbuff.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\wireless.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\wlan_intf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\analogin_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\analogout_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\can_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\ethernet_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\gpio_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\gpio_irq_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\i2c_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\pinmap.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\port_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\pwmout_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\rtc_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\serial_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\sleep_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\spi_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal\us_ticker_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\dma_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\efuse_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\ethernet_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\flash_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\flash_eep.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\gpio_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\gpio_irq_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\i2c_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\i2s_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\log_uart_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\nfc_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\serial_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\sleep_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\spdio_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\spi_ex_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\sys_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\hal_ext\wdt_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\device.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\gpio_object.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\objects.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\PeripheralNames.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\PinNames.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\PortNames.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\timer_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\port\realtek\freertos\ethernetif.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\port\realtek\freertos\sys_arch.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\autoip.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\icmp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\igmp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\inet.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\inet_chksum.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\ip.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\ip_addr.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip\ip_frag.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\api_msg.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\arch.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\debug.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\def.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\dhcp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\dns.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\err.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\init.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\lwip_timers.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\mem.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\memp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\memp_std.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\netbuf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\netdb.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\netif.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\netifapi.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\opt.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\pbuf.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\raw.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\sio.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\snmp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\snmp_asn1.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\snmp_msg.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\snmp_structs.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\sockets.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\stats.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\sys.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\tcp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\tcpip.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\tcp_impl.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\lwip\udp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\netif\etharp.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\netif\loopif.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\netif\ppp_oe.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\netif\slipif.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\posix\netdb.h" />
+    <ClInclude Include="$(SDK_PATH)\component\common\network\lwip\src\include\posix\sys\socket.h" />
+    <ClInclude Include="$(SDK_PATH)\component\os\freertos\freertos_service.h" />
+    <ClInclude Include="$(SDK_PATH)\component\os\os_dep\include\device_lock.h" />
+    <ClInclude Include="$(SDK_PATH)\component\os\os_dep\include\osdep_service.h" />
+    <ClInclude Include="$(SDK_PATH)\component\os\os_dep\include\os_support.h" />
+    <ClInclude Include="$(SDK_PATH)\component\os\os_dep\include\tcm_heap.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\cmsis.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\cmsis_nvic.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\diag.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\rand.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\rtl_stdlib.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\rtl_utility.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\strproc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\system_8195a.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\va_list.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\bitband_io.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_adc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_common.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_crypto.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_dac.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_diag.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_efuse.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_gdma.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_gpio.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_i2c.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_i2s.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_irqn.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_log_uart.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_mii.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_misc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_nfc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_pcm.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_peri_on.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_pinmux.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_platform.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_pwm.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_sdio.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_sdio_host.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_sdr_controller.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_soc_ps_monitor.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_spi_flash.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_ssi.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_timer.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_uart.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_usb.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_util.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_vector_table.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_adc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_dac.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_gdma.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_gpio.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_gspi.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_i2c.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_i2s.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_mii.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_nfc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_pcm.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_peri_on.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_pwm.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sdio.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sdio_host.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sdr.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_spi_flash.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_ssi.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sys_on.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_timer.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_uart.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_usb.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_wdt.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\rtl_consol.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\rtl_sec.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\freertos_pmu_8195a.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\mailbox.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\osdep_api.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\os_support.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\os_timer.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\include\rtl_bios_data.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\include\rtl_lib.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\include\rtl_rr_libc.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\include\rt_lib_rom.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\common\bsp\basic_types.h" />
+    <ClInclude Include="$(SDK_PATH)\component\soc\realtek\common\bsp\section_config.h" />
+    <ClInclude Include="Project\WS2812\ledeffectsserver.h" />
+    <ClInclude Include="Project\WS2812\ledfilters.h" />
+    <ClInclude Include="Project\WS2812\ws2812.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Project\main.c" />
+    <ClCompile Include="Project\tcpsrv\tcp_srv_conn.c" />
+    <ClCompile Include="Project\user_start.c" />
+    <ClCompile Include="Project\webfs\webfs.c" />
+    <ClCompile Include="Project\web\websock.c" />
+    <ClCompile Include="Project\web\web_auth.c" />
+    <ClCompile Include="Project\web\web_int_callbacks.c" />
+    <ClCompile Include="Project\web\web_int_vars.c" />
+    <ClCompile Include="Project\web\web_srv.c" />
+    <ClCompile Include="Project\web\web_utils.c" />
+    <ClCompile Include="Project\web\web_websocket.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\lwip_netconf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\lwip_netconf1.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\rtw_wowlan\dev_wowlan.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\src\utils\os_freertos.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\wpa_supplicant\wifi_eap_config.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\wpa_supplicant\wifi_p2p_config.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\rtw_wpa_supplicant\wpa_supplicant\wifi_wps_config.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\wifi_conf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\wifi_ind.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\wifi_promisc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\wifi_simple_config.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi\wifi_util.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi_api_scan.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\api\wifi_interactive_mode.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\gspi\gspi_intf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\gspi\gspi_io.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\gspi\gspi_isr.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\sdio\sdio_drvio.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\sdio\sdio_intf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\hci\sdio\sdio_isr.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\lwip_intf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\analogin_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\dma_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\efuse_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\ethernet_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\flash_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\flash_eep.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\gpio_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\gpio_irq_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\i2c_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\i2s_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\log_uart_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\nfc_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\pinmap.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\pinmap_common.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\port_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\pwmout_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\rtc_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\serial_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\sleep.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\spdio_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\spi_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\sys_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\timer_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\us_ticker.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a\wdt_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\port\realtek\freertos\ethernetif.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\port\realtek\freertos\sys_arch.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\api_lib.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\api_msg.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\err.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\netbuf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\netdb.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\netifapi.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\sockets.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\api\tcpip.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\def.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\dhcp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\dns.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\init.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\autoip.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\icmp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\igmp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\inet.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\inet_chksum.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\ip.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\ip_addr.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\ipv4\ip_frag.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\lwip_timers.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\mem.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\memp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\netif.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\pbuf.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\raw.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\snmp\asn1_dec.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\snmp\asn1_enc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\snmp\mib2.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\snmp\mib_structs.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\snmp\msg_in.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\snmp\msg_out.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\stats.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\sys.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\tcp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\tcp_in.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\tcp_out.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\core\udp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\common\network\lwip\src\netif\etharp.c" />
+    <ClCompile Include="$(SDK_PATH)\component\os\freertos\freertos_service.c" />
+    <ClCompile Include="$(SDK_PATH)\component\os\os_dep\device_lock.c" />
+    <ClCompile Include="$(SDK_PATH)\component\os\os_dep\osdep_service.c" />
+    <ClCompile Include="$(SDK_PATH)\component\os\os_dep\tcm_heap.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\app_start.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\cmsis_nvic.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device\system_8195a.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\bitband_io.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_32k.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_adc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_common.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_dac.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_efuse.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_gdma.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_gpio.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_i2c.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_i2s.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_log_uart.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_mii.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_misc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_nfc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_pcm.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_pinmux.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_pwm.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_sdio_host.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_sdr_controller.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_soc_ps_monitor.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_spi_flash_ram.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_ssi.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_timer.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\hal_uart.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\fw_loader_main.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\hal_misc_v0.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\low_level_io.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\rtl_bios_data.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\rtl_boot.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\rtl_boot_min.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\rtl_boot_ram.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\rtl_boot_tst.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\startup.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\startup_old.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_adc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_dac.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_gdma.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_gpio.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_i2c.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_i2s.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_mii.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_nfc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_pcm.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_pwm.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sdio_device.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sdio_host.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_sdio_host_open.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_ssi.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_timer.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\rtl8195a_uart.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\console_hs_uart.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\console_i2c.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\low_level_io.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\rtl_consol.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\driver\rtl_console_new.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\freertos_pmu_8195a.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\mailbox.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\os\osdep_api.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd\c_stdio.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd\ram_libc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd\ram_libgloss_retarget.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd\ram_pvvx_libc.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd\rtl_eabi_cast_ram.c" />
+    <ClCompile Include="$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd\rtl_math_ram.c" />
+    <ClCompile Include="Project\WS2812\ledeffectsserver.c" />
+    <ClCompile Include="Project\WS2812\ledfilters.c" />
+    <ClCompile Include="Project\WS2812\ws2812.c" />
+  </ItemGroup>
+  <!-- To Enable linux debugger End -->
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>mingw32-make -s -j 10 all</NMakeBuildCommandLine>
+    <IncludePath>C:\RTL\6-2017-q2\arm-none-eabi\include;$(SDK_PATH)\component\common\mbed\targets\hal\rtl8195a;$(SDK_PATH)\component\common\mbed\common;$(SDK_PATH)\component\common\mbed\hal;$(SDK_PATH)\component\common\mbed\hal_ext;$(SDK_PATH)\component\common\mbed\api;$(SDK_PATH)\component\common\api;$(SDK_PATH)\component\common\api\at_cmd;$(SDK_PATH)\component\common\api\network;$(SDK_PATH)\component\common\api\platform;$(SDK_PATH)\component\common\api\wifi\rtw_wowlan;$(SDK_PATH)\component\common\api\wifi;$(SDK_PATH)\component\common\network;$(SDK_PATH)\component\common\network\lwip\port\realtek;$(SDK_PATH)\component\common\network\lwip\port\realtek\arch;$(SDK_PATH)\component\common\network\lwip\port\realtek\freertos;$(SDK_PATH)\component\common\network\lwip\src\api;$(SDK_PATH)\component\common\network\lwip\src\core\ipv4;$(SDK_PATH)\component\common\network\lwip\src\core\snmp;$(SDK_PATH)\component\common\network\lwip\src\core;$(SDK_PATH)\component\common\network\lwip\src\include;$(SDK_PATH)\component\common\network\lwip\src\include\ipv4;$(SDK_PATH)\component\common\network\lwip\src\include\ipv4\lwip;$(SDK_PATH)\component\common\network\lwip\src\include\lwip;$(SDK_PATH)\component\common\network\lwip\src\include\netif;$(SDK_PATH)\component\common\network\lwip\src\include\posix\sys;$(SDK_PATH)\component\common\network\lwip\src\include\posix;$(SDK_PATH)\component\common\network\lwip\src\netif;$(SDK_PATH)\component\common\drivers\wlan\realtek\include;$(SDK_PATH)\component\common\drivers\wlan\realtek\include\byteorder;$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep;$(SDK_PATH)\component\common\drivers\wlan\realtek\src\osdep\freertos;$(SDK_PATH)\component\os\freertos\freertos\Source;$(SDK_PATH)\component\os\freertos\freertos\Source\portable\GCC\ARM_CM3;$(SDK_PATH)\component\os\freertos\freertos\Source\include;$(SDK_PATH)\component\os\freertos;$(SDK_PATH)\component\os\os_dep\include;$(SDK_PATH)\component\os\os_dep;$(SDK_PATH)\component\os\rtx;$(SDK_PATH)\component\soc\realtek\common\bsp;$(SDK_PATH)\component\soc\realtek\8195a\fwlib;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\src;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\rtl8195a\src;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\wlan\realtek\wlan_ram_map\rom;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\usb_otg\include;$(SDK_PATH)\component\soc\realtek\8195a\fwlib\ram_lib\usb_otg\include\usb_otg_inc;$(SDK_PATH)\component\soc\realtek\8195a\cmsis;$(SDK_PATH)\component\soc\realtek\8195a\cmsis\device;$(SDK_PATH)\component\soc\realtek\8195a\misc\driver;$(SDK_PATH)\component\soc\realtek\8195a\misc\platform;$(SDK_PATH)\component\soc\realtek\8195a\misc\os;$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib;$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\include;$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\lib_rtlstd;$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\libc\rom\string;$(SDK_PATH)\component\soc\realtek\8195a\misc\rtl_std_lib\libgloss\rtl8195a\rom;$(ProjectDir)Project;$(ProjectDir)Project\web;$(ProjectDir)Project\webfs;$(ProjectDir)Project\tcpsrv;$(ProjectDir)Project\driver;$(ProjectDir)Project\rtl8195a;$(ProjectDir)Project\ina219;$(ProjectDir)Project\adc_ws;$(ProjectDir)Project\MPU6050;$(ProjectDir)Project\SSD1306;$(ProjectDir)Project\MLX90614;$(ProjectDir)Project\WS2812;$(IncludePath)</IncludePath>
+    <NMakeReBuildCommandLine>mingw32-make -s -j 10 rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>mingw32-make -s clean</NMakeCleanCommandLine>
+    <NMakeOutput>ram_all.bin</NMakeOutput>
+    <OutDir>$(ProjectDir)Debug\bin\</OutDir>
+    <IntDir>$(ProjectDir)Debug</IntDir>
+    <NMakePreprocessorDefinitions>CONFIG_PLATFORM_8195A=1;GCC_ARMCM3;M3;F_CPU=166666666L;__STDC__;__extension__=</NMakePreprocessorDefinitions>
+    <ExecutablePath>$(PATH)</ExecutablePath>
+    <ReferencePath />
+    <LibraryPath />
+    <LibraryWPath />
+    <ExcludePath>
+    </ExcludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>
+    </NMakeBuildCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <BuildLog>
+      <Path>$(ProjectDir)Debug\$(MSBuildProjectName).log</Path>
+    </BuildLog>
+  </ItemDefinitionGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
