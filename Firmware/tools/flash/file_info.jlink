@@ -1,0 +1,7 @@
+define call1
+set $ImageSize = 0x215C
+set $ImageAddr = 0x000000
+end
+define call2
+FlasherWrite Debug/bin/ram_1.p.bin $ImageAddr $ImageSize
+end
